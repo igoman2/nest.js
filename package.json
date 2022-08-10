@@ -1,8 +1,8 @@
 {
   "name": "opn",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "opn server",
+  "author": "junho.han",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -49,7 +49,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "uuid": "^8.3.2"
   },
   "jest": {
     "moduleFileExtensions": [
