@@ -1,0 +1,3 @@
+# 운영 환경
+db:
+  synchronize: false

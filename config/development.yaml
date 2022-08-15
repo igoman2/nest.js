@@ -1,0 +1,9 @@
+# 개발 환경
+db:
+  host: 'localhost'
+  username: 'postgres'
+  password: 'wnsgh1007!'
+  synchronize: true
+
+jwt:
+  secret: 'Secret1234'

@@ -1,0 +1,11 @@
+# 개발 + 운영 환경
+server:
+  port: 3030
+
+db:
+  type: 'postgres'
+  port: 5432
+  database: 'board-app'
+
+jwt:
+  expiresIn: 3600
