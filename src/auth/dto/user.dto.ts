@@ -1,6 +1,6 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
-export class AuthCredentialsDto {
+export class UserDto {
   @IsString()
   @MinLength(4)
   @MaxLength(20)
@@ -13,10 +13,4 @@ export class AuthCredentialsDto {
     message: 'password only accepts english and number',
   })
   password: string;
-
-  @IsString()
-  name: string;
-
-  @IsString()
-  cellPhone: string;
 }
