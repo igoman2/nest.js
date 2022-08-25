@@ -1,3 +1,9 @@
 # 운영 환경
 db:
+  host: 'localhost'
+  username: 'postgres'
+  password: 'wnsgh1007!'
   synchronize: false
+
+jwt:
+  secret: 'Secret1234'
