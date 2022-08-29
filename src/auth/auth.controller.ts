@@ -1,9 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
+  Put,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
@@ -11,9 +14,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { UserDto } from './dto/user.dto';
-import { GetUser } from './get-user.decorator';
-import { getUserInfoById } from './types';
-import { User } from './user.entity';
+import { UserInfo } from './types';
 
 @Controller('auth')
 export class AuthController {
@@ -34,15 +35,24 @@ export class AuthController {
     return this.authService.signIn(userDto);
   }
 
-  @Post('/:test')
-  @UseGuards(AuthGuard('jwt'))
-  test(@GetUser() user: User) {
-    console.log('user', user);
+  @Get('/:id')
+  // @UseGuards(AuthGuard('jwt'))
+  getUserInfoById(@Param('id') id: number): Promise<UserInfo> {
+    return this.authService.getUserInfoById(id);
   }
 
-  @Get('/:id')
-  @UseGuards(AuthGuard('jwt'))
-  getUserInfoById(@Param('id') id: number): Promise<getUserInfoById> {
-    return this.authService.getUserInfoById(id);
+  @Put('/:id')
+  // @UseGuards(AuthGuard('jwt'))
+  updateUserInfoById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) userInfo: UserInfo,
+  ) {
+    return this.authService.updateUserInfoById(id, userInfo);
+  }
+
+  @Delete('/:id')
+  // @UseGuards(AuthGuard('jwt'))
+  deleteUserInfoById(@Param('id', ParseIntPipe) id: number) {
+    return this.authService.deleteUserInfoById(id);
   }
 }
