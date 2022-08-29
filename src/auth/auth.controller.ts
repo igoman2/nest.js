@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { UserDto } from './dto/user.dto';
 import { GetUser } from './get-user.decorator';
+import { getUserInfoById } from './types';
 import { User } from './user.entity';
 
 @Controller('auth')
@@ -41,7 +42,7 @@ export class AuthController {
 
   @Get('/:id')
   @UseGuards(AuthGuard('jwt'))
-  getUserInfoById(@Param('id') id: number): Promise<User> {
+  getUserInfoById(@Param('id') id: number): Promise<getUserInfoById> {
     return this.authService.getUserInfoById(id);
   }
 }

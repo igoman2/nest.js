@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bycrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { UserDto } from './dto/user.dto';
-import { User } from './user.entity';
+import { getUserInfoById } from './types';
 
 @Injectable()
 export class AuthService {
@@ -37,13 +37,18 @@ export class AuthService {
     }
   }
 
-  async getUserInfoById(id: number): Promise<User> {
+  async getUserInfoById(id: number): Promise<getUserInfoById> {
     const found = await this.userRepository.findOne({ id });
+    const resp: getUserInfoById = {
+      username: found.username,
+      name: found.name,
+      cellPhone: found.cellPhone,
+    };
 
     if (!found) {
       throw new NotFoundException(`Can't find User with id ${id}`);
     }
 
-    return found;
+    return resp;
   }
 }
