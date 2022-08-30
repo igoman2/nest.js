@@ -35,6 +35,11 @@ export class AuthController {
     return this.authService.signIn(userDto);
   }
 
+  @Get('/users')
+  getUsers(): Promise<UserInfo[]> {
+    return this.authService.getUsers();
+  }
+
   @Get('/:id')
   // @UseGuards(AuthGuard('jwt'))
   getUserInfoById(@Param('id') id: number): Promise<UserInfo> {

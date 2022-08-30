@@ -68,9 +68,15 @@ export class AuthService {
 
   async deleteUserInfoById(id: number): Promise<void> {
     const result = await this.userRepository.delete({ id });
-
     if (result.affected === 0) {
       throw new NotFoundException(`Can't find User with id ${id}`);
     }
+  }
+
+  async getUsers(): Promise<UserInfo[]> {
+    const query = this.userRepository.createQueryBuilder('user');
+    const users = await query.getMany();
+
+    return users;
   }
 }
