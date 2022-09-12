@@ -6,6 +6,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
+import * as dayjs from 'dayjs';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -19,6 +20,8 @@ export class UserRepository extends Repository<User> {
       password: hashedPassword,
       name,
       cellPhone,
+      createdAt: dayjs().toISOString(),
+      status: this.getnerateTempUserStatus(Math.floor(Math.random() * 3)),
     });
     try {
       await this.save(user);
@@ -29,5 +32,10 @@ export class UserRepository extends Repository<User> {
         throw new InternalServerErrorException();
       }
     }
+  }
+
+  getnerateTempUserStatus(index) {
+    const status = ['INITIAL', 'ACTIVATED', 'SLEEP', 'OUT'];
+    return status[index % 4];
   }
 }
