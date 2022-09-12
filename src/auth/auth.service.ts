@@ -43,6 +43,8 @@ export class AuthService {
       username: found.username,
       name: found.name,
       cellPhone: found.cellPhone,
+      createdAt: found.createdAt,
+      status: found.status,
     };
 
     if (!found) {
